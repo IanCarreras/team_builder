@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Form from './components/Form'
 
 import './App.css';
 
 function App() {
+  const [teamMembers, setTeamMembers ] = useState([])
+
   return (
     <div className="App">
-      <Form />
+      <Form teamMembers={teamMembers} setTeamMembers={setTeamMembers}/>
     </div>
   );
 }
