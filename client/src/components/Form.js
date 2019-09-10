@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 function Form(props) {
-    const { teamMembers, setTeamMembers, memberToEdit, editMember } = props
+    const { teamMembers, setTeamMembers, memberToEdit, editMember, setMemberToEdit } = props
     const [ member, setMember ] = useState({
         name: '',
         email: '',
@@ -14,7 +14,10 @@ function Form(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        if(memberToEdit) return setTeamMembers(editMember(member))
+        if(memberToEdit) {
+            setMemberToEdit(false)
+            return setTeamMembers(editMember(member))
+        }
         return setTeamMembers([...teamMembers, member])
     }
 
