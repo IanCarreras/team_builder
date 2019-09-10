@@ -10,16 +10,18 @@ const MemberDiv = styled.li`
 `
 const Edit = styled.span`
     float: right;
-
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 
 function Member(props) {
-    const { name, email, role } = props.teamMember
-    const { setMemberToEdit } = props
+    const { setMemberToEdit, index, teamMember } = props
+    const { name, email, role } = teamMember
     return (
         <MemberDiv>
-            <Edit onClick={() => setMemberToEdit(props.teamMember)} >Edit</Edit>
+            <Edit onClick={() => setMemberToEdit({ ...teamMember, index})} >Edit</Edit>
             <h2>{name}</h2>
             <h3>{email}</h3>
             <h3>{role}</h3>

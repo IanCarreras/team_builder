@@ -20,14 +20,25 @@ function App() {
   const [ teamMembers, setTeamMembers ] = useState([])
   const [ memberToEdit, setMemberToEdit ] = useState()
 
+  const editMember = (member) => {
+    return teamMembers.map((obj, indx) => {
+      return indx === memberToEdit.index ? member : obj
+    })
+  }
+
   return (
     <div className="App">
-      <Form teamMembers={teamMembers} setTeamMembers={setTeamMembers}/>
+      <Form 
+        teamMembers={teamMembers} 
+        setTeamMembers={setTeamMembers} 
+        memberToEdit={memberToEdit}
+        editMember={editMember} />
       <Members>
         { 
           teamMembers.map((teamMember, indx) => {
             return <Member 
                     key={indx} 
+                    index={indx}
                     teamMember={teamMember} 
                     memberToEdit={memberToEdit}
                     setMemberToEdit={setMemberToEdit} />

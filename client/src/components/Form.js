@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Form(props) {
-    const { teamMembers, setTeamMembers } = props
+    const { teamMembers, setTeamMembers, memberToEdit, editMember } = props
     const [ member, setMember ] = useState({
         name: '',
         email: '',
-        role: ''
+        role: '',
     })
 
     const handleChange = e => {
@@ -14,9 +14,13 @@ function Form(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(member)
+        if(memberToEdit) return setTeamMembers(editMember(member))
         return setTeamMembers([...teamMembers, member])
     }
+
+    useEffect(() => {
+        if(memberToEdit) return setMember(memberToEdit)
+    }, [memberToEdit])
 
     return (
         <div>
