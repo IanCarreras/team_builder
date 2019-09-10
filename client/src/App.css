@@ -2,3 +2,17 @@
   text-align: center;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+label {
+  margin-top: 1rem;
+}
+
+button {
+  width: 5rem;
+  margin: 1rem auto;
+}
