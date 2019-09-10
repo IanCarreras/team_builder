@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 
 function Form(props) {
     const { teamMembers, setTeamMembers, memberToEdit, editMember, setMemberToEdit } = props
-    const [ member, setMember ] = useState({
+    const emptyMember = {
         name: '',
         email: '',
-        role: '',
-    })
+        role: ''
+    }
+    const [ member, setMember ] = useState(emptyMember)
 
     const handleChange = e => {
         setMember({...member, [e.target.name]: e.target.value})
@@ -16,8 +17,10 @@ function Form(props) {
         e.preventDefault()
         if(memberToEdit) {
             setMemberToEdit(false)
+            setMember(emptyMember)
             return setTeamMembers(editMember(member))
         }
+        setMember(emptyMember)
         return setTeamMembers([...teamMembers, member])
     }
 
