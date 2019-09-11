@@ -14,7 +14,9 @@ function Form(props) {
     }
 
     const handleSubmit = e => {
+        const { name, email, role } = member
         e.preventDefault()
+        if( !/^[a-z ]+$/ig.test(name) || !/([a-z0-9@.])+$/ig.test(email) || !/^[a-z ]+$/ig.test(role) ) return alert('invalid input')
         if(memberToEdit) {
             setMemberToEdit(false)
             setMember(emptyMember)
